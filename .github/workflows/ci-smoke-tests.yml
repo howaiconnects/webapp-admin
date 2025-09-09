@@ -1,0 +1,42 @@
+name: "CI — Smoke Tests (Airtable / Latitude / Miro)"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  smoke-tests:
+    name: Run Vitest smoke tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.1
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Airtable / Latitude / Miro smoke tests
+        env:
+          CI: "true"
+          # Intentionally do NOT provide real secrets in CI for smoke tests.
+          # If you want to enable live-integration tests later, set these in GitHub secrets.
+          SUPABASE_URL: ""
+          SUPABASE_ANON_KEY: ""
+          AIRTABLE_API_KEY: ""
+          LATITUDE_SECRET: ""
+          MIRO_API_KEY: ""
+        run: |
+          # run vitest for only the smoke test files we added — keep tests isolated and fast
+          npx vitest run "apps/webapp-admin/tests/api/*.test.ts" --run --reporter default

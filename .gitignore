@@ -1,0 +1,14 @@
+# Ignore all local environment files with secrets
+.env.local
+.env.*.local
+.env.root.local
+
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Build outputs
+.next/
+dist/
+build/
+.turbo/*.log

@@ -1,0 +1,61 @@
+{
+  "name": "howaiconnects-webapp",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.15.1",
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "snapshot:prompts": "ts-node scripts/snapshot-prompts.ts",
+    "status:update": "pnpm ts-node scripts/generate-status-update.ts",
+    "start:wowdash": "cd wowdash-admin-dashboard/wow-dash-frontend/WowDash && pnpm start",
+    "dev:infra": "docker-compose -f docker-compose.dev.yml up -d --build",
+    "dev:proxy": "node scripts/local-proxy.mjs",
+    "dev:all": "node ./scripts/dev-all.mjs",
+    "db:migrate": "npx ts-node scripts/load-env.ts && prisma migrate deploy --schema=prisma/schema.prisma",
+    "db:migrate:dev": "npx ts-node scripts/load-env.ts && prisma migrate dev --name init --schema=prisma/schema.prisma",
+    "db:seed": "npx ts-node scripts/load-env.ts && node prisma/seed.js",
+    "ci:bootstrap": "./scripts/ci-git-config.sh && npx ts-node scripts/load-env.ts && pnpm -w prisma generate",
+    "branch-helper": "node ./scripts/branch-helper.ts",
+    "tsc": "tsc --build --pretty"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.13",
+    "@types/react": "^19.1.12",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "dotenv": "^17.2.2",
+    "dotenv-flow": "^4.1.0",
+    "eslint": "^8.50.0",
+    "husky": "^8.0.3",
+    "next": "^15.5.2",
+    "prisma": "^5.0.0",
+    "ts-node": "^10.9.1",
+    "turbo": "^2.5.6",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@ai-sdk/azure": "^2.0.24",
+    "@ai-sdk/openai": "^2.0.24",
+    "@prisma/client": "^5.0.0",
+    "@stripe/stripe-js": "^7.9.0",
+    "ai": "^5.0.34",
+    "express": "^5.1.0",
+    "http-proxy-middleware": "^3.0.5",
+    "next-themes": "^0.4.6",
+    "node-fetch": "^3.3.2",
+    "openai": "^5.19.1",
+    "stripe": "^18.5.0"
+  },
+  "volta": {
+    "node": "20.4.0",
+    "pnpm": "10.15.1"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

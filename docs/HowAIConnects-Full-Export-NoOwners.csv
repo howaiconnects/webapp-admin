@@ -1,0 +1,63 @@
+
+Type,Title,Description,Owner,Start_Date,End_Date,Status,Priority,Dependencies,Doc_URL
+Vision,Core Mission,"Connect AI with the web through intelligent crawling, processing, and content management, building an AI‑first, modular ecosystemfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=The%20,seamless%2C%20intelligent%2C%20and%20customizable%20integration.",,,,,,,
+Mission,AI‑First Foundation,"Prioritize AI components such as Latitude prompt management, queue/caching mechanisms, vector database integration, and streaming embeddings from the very beginningfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=%27AI,very%20beginning%20of%20its%20development.",,,,,,,
+Goal,Unified AI & Visual Platform,"Deliver a seamless platform that combines visual planning and prompt orchestration to accelerate agent workflows and empower developers. Focus on iterative MVP delivery with high‑quality integrations and a modular architecture.",,,,,,,
+Principles,Modular & Developer‑Centric Design,"Adopt a modular architecture where each component is treated as an individual project, focusing on developer experience and production readinessfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=%27AI,very%20beginning%20of%20its%20development.",,,,,,,
+Architecture,Monorepo Setup,"Use a Next.js monorepo with pnpm and Turborepo for unified development, tighter integration, simplified deployment, and shared toolingfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=The%20,This%20structure%20is%20powered%20by.",,,,,,,
+
+Deliverable,Miro Integration,"Implement miro‑adapter, embed Miro boards for visual prompt and agent design, and wire into the Prompt Labfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=%E2%97%A6%20Miro%20AI%3A%20%E2%96%AA%20Status%3A,with%20core%20API%20client%20methods.",Sarah Chen,2025-09-22,2025-10-05,Planned,High,Foundational Setup complete,
+Deliverable,Latitude & Airtable Integration,"Implement Latitude adapter methods (listPrompts, getPrompt, createPrompt, updatePrompt), create Airtable adapter, sync script, and wire both into the Prompt Labfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=6,packages%2Flatitudefile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=%E2%97%A6%20Airtable%20is%20the%20chosen,for%20the%20%27Prompts%27%20table%20includes.",Devin Lee,2025-10-06,2025-10-19,Planned,High,Foundational Setup complete,
+Deliverable,CrewAI & Zapier Integration,"Implement crewai‑adapter and zapier‑adapter, integrate with the Prompt Lab, and handle webhook setupsfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=%E2%80%A2%20Wire%20the%20CrewAI%20adapter,risk%20items.",Maria Gonzales / Kevin Nguyen,2025-10-20,2025-11-16,Planned,Medium,Latitude/Airtable wired,
+Deliverable,Data Pipeline & Intelligence Layer,"Integrate Crawl4AI service, Bright Data zone manager, AI Foundry embeddings, and Qdrant vector database; implement adaptive crawlinghttps://docs.brightdata.com/introduction.",Kevin Nguyen,2025-11-03,2025-11-30,Planned,Medium,CrewAI & Zapier integration,
+Deliverable,Security & Monitoring,"Implement JWT authentication tenant enforcement Prometheus & Grafana dashboards; hardened API gateway and rate limitingfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=%E2%80%A2%20Wire%20the%20CrewAI%20adapter%2Crisk%20items.",John Smith / Priya Patel,2025-10-20,2025-11-30,Planned,Medium,Foundational Setup complete,
+Deliverable,MVP Launch,"Finalize deployment on Replit conduct project review and launch the MVP.",Alex Morgan,2025-12-01,2025-12-05,Planned,Medium,All deliverables complete,
+
+Feature,Template Features,"WowDash template offers multiple dashboard variations, dark and light modes, advanced charts and graphs, widgets, cards, form elements with validation, authentication pages, and responsive designhttps://elements.envato.com/wowdash-node-js-admin-dashboard-template-FPP2JEFhttps://elements.envato.com/wowdash-node-js-admin-dashboard-template-FPP2JEFhttps://elements.envato.com/wowdash-node-js-admin-dashboard-template-FPP2JEF.",,,,,,,
+Component,Latitude Prompt System,Core component for external prompt management and AI agent orchestrationfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=6,packages%2Flatitude.,,,,,,,
+Component,Prompt Lab,Central AI orchestration hub defining extensible adapter interfaces for prompt control and data flowfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=6,packages%2Flatitude.,,,,,,,
+Component,Supabase,"PostgreSQL‑based database layer storing profiles, prompts, prompt versions, and run data. Migrations must be defined earlyfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=%E2%80%A2%20Wire%20the%20CrewAI%20adapter,risk%20items.",,,,,,,
+Component,Airtable,Structured storage for prompt templates; includes Prompts and PromptVersions tables with detailed schemafile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=%E2%97%A6%20Airtable%20is%20the%20chosen,for%20the%20%27Prompts%27%20table%20includes.,,,,,,,
+Component,CrewAI,AI agent framework used for orchestrating autonomous agents. Integration uses an adapter wired into the Prompt Labfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=%E2%80%A2%20Wire%20the%20CrewAI%20adapter,risk%20items.,,,,,,,
+Component,Zapier,Automation platform for integrating external services via webhooks and API requestsfile:///home/oai/share/Howaiconnects-Platform.pdf#:~:text=%E2%96%AA%20Status%3A%20Not%20natively%20integrated,required%20for%20full%20native%20integration.,,,,,,,
+Component,Bright Data & Crawl4AI,"Data collection service providing proxies, web access APIs, and data feeds, integrated as part of Crawl4AI and Bright Data managershttps://docs.brightdata.com/introduction.",,,,,,,
+Component,AI Foundry,"Azure AI Foundry for managing agents, models, and orchestrating AI applicationshttps://learn.microsoft.com/en-us/azure/ai-foundry/#:~:text=Azure%20AI%20Foundry%20documentation.",,,,,,,
+Component,Qdrant,AI‑native vector database for storing and searching embeddingshttps://qdrant.tech/documentation/#:~:text=,API%20Reference.,,,,,,,
+Component,Next.js & Node.js,React framework (Next.js) and backend runtime (Node.js) powering the web application and server‑side integrations.,,,,,,,
+Tech Stack,Primary Technologies,"Node.js, Next.js 15, pnpm, Turborepo, Supabase/PostgreSQL, Airtable, Latitude.so, Miro API, CrewAI, Zapier, Bright Data, AI Foundry, Qdrant, Docker, Prometheus, Grafana, Replit.",,,,,,,
+
+Docs,Latitude API,Official documentation for Latitude prompt management and agent system.,,,,,,,https://docs.latitude.so
+Docs,Miro API,Official developer documentation for Miro APIs and SDKs.,,,,,,,https://developers.miro.com
+Docs,Airtable API,Official API documentation for Airtable.,,,,,,,https://airtable.com/developers/web/api
+Docs,Supabase Docs,Official documentation for Supabase.,,,,,,,https://supabase.com/docs
+Docs,CrewAI Docs,Official documentation for CrewAI.,,,,,,,https://docs.crewai.com
+Docs,Zapier Docs,Developer documentation for Zapier integration.,,,,,,,https://docs.zapier.com
+Docs,Bright Data Docs,API and platform documentation for Bright Data.,,,,,,,https://docs.brightdata.com
+Docs,AI Foundry Docs,Documentation for Azure AI Foundry.,,,,,,,https://learn.microsoft.com/en-us/azure/ai-foundry/
+Docs,Qdrant Docs,Documentation for Qdrant vector database.,,,,,,,https://qdrant.tech/documentation/
+Docs,WowDash Template,"Node.js admin dashboard template with multiple dashboards, charts, and responsive designhttps://elements.envato.com/wowdash-node-js-admin-dashboard-template-FPP2JEFhttps://elements.envato.com/wowdash-node-js-admin-dashboard-template-FPP2JEFhttps://elements.envato.com/wowdash-node-js-admin-dashboard-template-FPP2JEF.",,,,,,,https://elements.envato.com/wowdash-node-js-admin-dashboard-template-FPP2JEF
+Docs,Next.js Docs,Documentation for Next.js (React framework).,,,,,,,https://nextjs.org/docs
+Docs,Node.js Docs,Documentation for Node.js.,,,,,,,https://nodejs.org/docs/latest/api/
+Docs,Sass Docs,Documentation for Sass (Syntactically Awesome Style Sheets).,,,,,,,https://sass-lang.com/documentation
+
+Task,Integrate Next Wow Next Admin Dashboard & customize UI,,,2025-09-08,2025-09-21,Planned,High,,
+Task,Setup Supabase schema & migrations; unify .env,,,2025-09-08,2025-09-21,Planned,High,,
+Task,Configure API Gateway & Docker orchestration,,,2025-09-08,2025-09-21,Planned,High,,
+Task,Implement Miro Adapter,,,2025-09-22,2025-10-05,Planned,High,Foundational Setup complete,
+Task,Develop UI components for Miro embed,,,2025-09-22,2025-10-05,Planned,Medium,Miro Adapter,
+Task,Wire Miro adapter into Prompt Lab flows,,,2025-09-22,2025-10-05,Planned,Medium,Miro Adapter,
+Task,Implement Latitude Adapter,,,2025-10-06,2025-10-19,Planned,High,Foundational Setup complete,
+Task,Implement Airtable Adapter,,,2025-10-06,2025-10-19,Planned,Medium,Latitude Adapter,
+Task,Wire Latitude & Airtable into Prompt Lab,,,2025-10-06,2025-10-19,Planned,Medium,"Latitude Adapter, Airtable Adapter",
+Task,Build Airtable-Latitude sync script,,,2025-10-20,2025-11-02,Planned,Medium,Latitude & Airtable wired,
+Task,Create visual dashboard & metrics using Miro,,,2025-10-20,2025-11-02,Planned,Medium,Miro embed & wire,
+Task,Implement CrewAI Adapter,,,2025-10-20,2025-11-02,Planned,Medium,Prompt Lab wired,
+Task,Setup Monitoring (Prometheus & Grafana),,,2025-10-20,2025-11-02,Planned,Medium,Docker orchestration,
+Task,Implement Zapier Adapter & Webhooks,,,2025-11-03,2025-11-16,Planned,Medium,Prompt Lab wired,
+Task,Connect Zapier flows to external systems,,,2025-11-03,2025-11-16,Planned,Medium,Zapier Adapter,
+Task,Integrate Crawl4AI service & Bright Data manager,,,2025-11-03,2025-11-16,Planned,Medium,Core infrastructure ready,
+Task,Implement Adaptive Crawling & AI Foundry embeddings,,,2025-11-17,2025-11-30,Planned,Medium,Crawl4AI integrated,
+Task,Integrate Qdrant vector DB,,,2025-11-17,2025-11-30,Planned,Medium,Adaptive Crawling,
+Task,Implement Security: JWT auth & tenant enforcement,,,2025-11-17,2025-11-30,Planned,Medium,Core infrastructure ready,
+Task,Implement Monetization & Scalability features,,,2025-11-17,2025-11-30,Planned,Low,Security implemented,
+Task,Project Review & MVP Launch on Replit,,,2025-12-01,2025-12-05,Planned,Medium,All tasks complete,

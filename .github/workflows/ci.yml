@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [foundations, main]
+
+jobs:
+  setup-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '10.15.1'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+          cache-dependency-path: |
+            pnpm-lock.yaml
+            apps/*/pnpm-lock.yaml
+            packages/*/pnpm-lock.yaml
+
+      - name: Load environment variables (prefer .env.root.local, fallback to .env.root.example)
+        run: |
+          if [ -f .env.root.local ]; then
+            echo "Using .env.root.local"
+            export $(grep -v '^#' .env.root.local | xargs)
+          elif [ -f .env.root.example ]; then
+            echo ".env.root.local not found, falling back to .env.root.example"
+            export $(grep -v '^#' .env.root.example | xargs)
+          else
+            echo "No root env file found (.env.root.local or .env.root.example)"
+          fi
+
+      - name: Make ci-git-config available and configure git (safe dirs / user)
+        run: |
+          if [ -f ./scripts/ci-git-config.sh ]; then
+            chmod +x ./scripts/ci-git-config.sh || true
+            ./scripts/ci-git-config.sh
+          else
+            echo "scripts/ci-git-config.sh not found; skipping git config step"
+          fi
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Generate Prisma client (workspace)
+        run: pnpm -w prisma generate
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+        run: pnpm test -- --passWithNoTests
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: |
+            packages/*/dist
+            apps/*/dist
+            .turbo

@@ -1,0 +1,66 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: howaiconnects
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data_dev:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+# Optional vector DB - Qdrant (commented out)
+#  qdrant:
+#    image: qdrant/qdrant:latest
+#    ports:
+#      - "6333:6333"
+#    volumes:
+#      - qdrant_data_dev:/qdrant/storage
+#    healthcheck:
+#      test: ["CMD-SHELL", "curl -f http://localhost:6333/health || exit 1"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+
+# Placeholder for latitude-llm service
+#  latitude-llm:
+#    image: your-latitude-llm-image:latest
+#    environment:
+#      LATITUDE_DATABASE_URL: postgres://latitude_user:password@postgres:5432/latitude
+#      LATITUDE_REDIS_URL: redis://redis:6379
+#      LATITUDE_SECRET: change_me_to_a_strong_secret
+#    ports:
+#      - "5000:5000" # Change as needed
+#    depends_on:
+#      - postgres
+#      - redis
+#    healthcheck:
+#      test: ["CMD-SHELL", "curl -f http://localhost:5000/health || exit 1"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+
+volumes:
+  postgres_data_dev:
+  redis_data_dev:
+#  qdrant_data_dev:

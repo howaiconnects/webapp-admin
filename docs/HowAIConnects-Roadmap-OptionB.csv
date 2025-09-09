@@ -1,0 +1,23 @@
+
+Phase,Task,Owner,Start_Date,End_Date,Status,Priority,Dependencies
+Foundational Setup,Integrate Next Wow Next Admin Dashboard & customize UI,Sarah Chen,2025-09-08,2025-09-21,Planned,High,
+Foundational Setup,Setup Supabase schema & migrations; unify .env,Devin Lee,2025-09-08,2025-09-21,Planned,High,
+Foundational Setup,Configure API Gateway & Docker orchestration,Priya Patel,2025-09-08,2025-09-21,Planned,High,
+Visual Layer,Implement Miro Adapter,Sarah Chen,2025-09-22,2025-10-05,Planned,High,Setup Supabase & env
+Visual Layer,Develop UI components for Miro embed,Sarah Chen,2025-09-22,2025-10-05,Planned,Medium,Miro Adapter
+Visual Layer,Wire Miro adapter into Prompt Lab flows,Devin Lee,2025-09-22,2025-10-05,Planned,Medium,Miro Adapter
+Core AI & Prompt Orchestration,Implement Latitude Adapter,Devin Lee,2025-10-06,2025-10-19,Planned,High,Setup Supabase & env
+Core AI & Prompt Orchestration,Implement Airtable Adapter,Devin Lee,2025-10-06,2025-10-19,Planned,Medium,Latitude Adapter
+Core AI & Prompt Orchestration,Wire Latitude & Airtable into Prompt Lab,Devin Lee,2025-10-06,2025-10-19,Planned,Medium,"Latitude Adapter, Airtable Adapter"
+Core AI & Prompt Orchestration,Build Airtable-Latitude sync script,Maria Gonzales,2025-10-20,2025-11-02,Planned,Medium,Latitude & Airtable wired
+Visual Layer,Create visual dashboard & metrics using Miro,Sarah Chen,2025-10-20,2025-11-02,Planned,Medium,Miro embed & wire
+Agent & Automation Layer,Implement CrewAI Adapter,Kevin Nguyen,2025-10-20,2025-11-02,Planned,Medium,Prompt Lab wired
+Enterprise & Monitoring,Setup Monitoring (Prometheus & Grafana),Priya Patel,2025-10-20,2025-11-02,Planned,Medium,Docker orchestration
+Agent & Automation Layer,Implement Zapier Adapter & Webhooks,Maria Gonzales,2025-11-03,2025-11-16,Planned,Medium,Prompt Lab wired
+Agent & Automation Layer,Connect Zapier flows to external systems,Maria Gonzales,2025-11-03,2025-11-16,Planned,Medium,Zapier Adapter
+Data Intelligence Layer,Integrate Crawl4AI service & Bright Data manager,Kevin Nguyen,2025-11-03,2025-11-16,Planned,Medium,Core infrastructure ready
+Data Intelligence Layer,Implement Adaptive Crawling & AI Foundry embeddings,Kevin Nguyen,2025-11-17,2025-11-30,Planned,Medium,Crawl4AI integrated
+Data Intelligence Layer,Integrate Qdrant vector DB,Devin Lee,2025-11-17,2025-11-30,Planned,Medium,Adaptive Crawling
+Enterprise Features & Scaling,Implement Security: JWT auth & tenant enforcement,John Smith,2025-11-17,2025-11-30,Planned,Medium,Core infrastructure ready
+Enterprise Features & Scaling,Implement Monetization & Scalability features,Priya Patel,2025-11-17,2025-11-30,Planned,Low,Security implemented
+Deployment,Project Review & MVP Launch on Replit,Alex Morgan,2025-12-01,2025-12-05,Planned,Medium,All tasks complete

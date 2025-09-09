@@ -1,0 +1,44 @@
+Phase,Task,Owner,Start,End,Priority,Dependencies,Docs
+Vision,Project vision synopsis,Team,2025-09-02,2025-09-02,High,,file:///home/oai/share/Howaiconnects-Platform.pdf
+Foundational Setup,Create monorepo layout (apps/, packages/, services/),Platform Team,2025-09-08,2025-09-12,High,,https://nextjs.org/docs
+Foundational Setup,Initialize pnpm workspaces and root package.json,Platform Team,2025-09-08,2025-09-09,High,Create monorepo layout,https://pnpm.io
+Foundational Setup,Add Turborepo config (turbo.json) and tasks,Platform Team,2025-09-09,2025-09-10,High,Initialize pnpm,https://turborepo.org
+Foundational Setup,Import WowDash template into /templates (read-only),Platform Team,2025-09-08,2025-09-08,High,,https://elements.envato.com/wowdash-node-js-admin-dashboard-template-FPP2JEF
+Foundational Setup,Lock templates/wowdash-admin-dashboard-readonly (chmod 555),Platform Team,2025-09-08,2025-09-08,High,Import WowDash template,
+Foundational Setup,Copy working WowDash into /webapp-admin and convert to Next.js structure,Frontend Lead,2025-09-08,2025-09-21,High,Import WowDash template,https://nextjs.org/docs
+Foundational Setup,Audit WowDash assets and replace or adapt JS/CSS to React components,Frontend Lead,2025-09-10,2025-09-17,Medium,Copy working WowDash,
+Foundational Setup,Create authoritative .env.example and .env.unified with placeholders,DevOps,2025-09-08,2025-09-10,High,,(root)/.env.example
+Foundational Setup,Create CI workflow skeleton (install, lint, test, build),Platform Team,2025-09-11,2025-09-14,Medium,Initialize pnpm,
+Foundational Setup,Configure Docker Compose for local dev (web, crawler, dbs),DevOps,2025-09-08,2025-09-21,High,,docs/HowAIConnects-Roadmap-OptionB.csv
+Supabase & Data,Design Prisma schema (profiles, prompts, prompt_versions, runs),Backend Lead,2025-09-08,2025-09-14,High,,https://supabase.com/docs
+Supabase & Data,Write Prisma migrations and seed fixtures,Backend Lead,2025-09-15,2025-09-18,High,Design Prisma schema,https://pris.ly
+Supabase & Data,Integrate Supabase client helpers and server wrappers,Backend Lead,2025-09-16,2025-09-21,High,Prisma migrations,https://supabase.com/docs
+Supabase & Data,Provision development Supabase/Postgres and integration tests,DevOps,2025-09-10,2025-09-14,High,Docker Compose,https://supabase.com/docs
+Prompt Lab & Adapters,Scaffold packages/prompt-lab and define adapter interfaces,Backend Lead,2025-09-15,2025-09-21,High,.env configured,packages/prompt-lab README
+Prompt Lab & Adapters,Implement adapter registry and configuration loader,Backend Engineer,2025-09-22,2025-09-25,High,Prompt Lab scaffold,
+Prompt Lab & Adapters,Implement Latitude adapter client (list/get/create/update),Backend Engineer,2025-10-06,2025-10-12,High,Adapter registry,https://docs.latitude.so
+Prompt Lab & Adapters,Add robust retry/backoff and logging to Latitude client,Backend Engineer,2025-10-13,2025-10-15,Medium,Latitude adapter,https://docs.latitude.so
+Prompt Lab & Adapters,Implement Airtable adapter (Prompts & PromptVersions tables),Backend Engineer,2025-10-06,2025-10-12,Medium,Adapter registry,https://airtable.com/developers/web/api
+Prompt Lab & Adapters,Implement batching and rate-limit handling for Airtable client,Backend Engineer,2025-10-13,2025-10-19,Medium,Airtable adapter,https://airtable.com
+Prompt Lab & Adapters,Create scripts to programmatically create Airtable base and import samples,Backend Engineer,2025-10-10,2025-10-13,Medium,Airtable adapter,scripts/airtable-create-base.js
+Prompt Lab & Adapters,Build Airtable <-> Latitude sync script (idempotent),Backend Engineer,2025-10-13,2025-10-19,Medium,Airtable adapter; Latitude adapter,scripts/airtable-latitude-sync.js
+Miro Integration,Create packages/miro-adapter and core API client,Frontend Engineer,2025-09-22,2025-09-28,High,Prompt Lab scaffold,https://developers.miro.com
+Miro Integration,Implement OAuth flow or service credential handling for Miro,Frontend Engineer,2025-09-22,2025-09-24,Medium,miro-adapter,https://developers.miro.com
+Miro Integration,Develop MiroBoard React component to embed boards and pass events,Frontend Engineer,2025-09-29,2025-10-05,Medium,miro-adapter,https://developers.miro.com/docs/web-sdk
+Miro Integration,Wire Miro board actions to Prompt Lab mapping (visual -> prompt templates),Frontend/Backend,2025-10-06,2025-10-12,Medium,miro-adapter; Latitude adapter,packages/prompt-lab docs
+Agent & Automation,CrewAI adapter implementation (agent orchestration),Backend Engineer,2025-10-20,2025-10-30,Medium,Prompt Lab wired,https://docs.crewai.com
+Agent & Automation,Design webhook endpoints and flows for Zapier integration,Backend Engineer,2025-11-03,2025-11-09,Medium,Prompt Lab wired,https://docs.zapier.com
+Agent & Automation,Implement Zapier adapter and OAuth if required,Backend Engineer,2025-11-03,2025-11-16,Medium,Webhook endpoints,https://docs.zapier.com
+Crawler & Data Pipeline,Integrate Crawl4AI & Bright Data manager into crawler service,Data Engineer,2025-11-03,2025-11-16,Medium,Crawler service present,https://docs.brightdata.com
+Crawler & Data Pipeline,Implement embedding pipeline (AI Foundry) and store to Qdrant,Data Engineer,2025-11-17,2025-11-30,Medium,Bright Data integration,https://learn.microsoft.com/en-us/azure/ai-foundry/
+Crawler & Data Pipeline,Add ingestion jobs and deduplication filters,Data Engineer,2025-11-03,2025-11-16,Medium,Crawler integration,
+Vector DB & Search,Stand up Qdrant service and schema,Data Engineer,2025-11-17,2025-11-20,Medium,Embedding pipeline,https://qdrant.tech/documentation/
+Vector DB & Search,Integrate semantic search endpoints and tests,Backend Engineer,2025-11-21,2025-11-30,Medium,Qdrant service,https://qdrant.tech/documentation/
+Monitoring & Security,Add Prometheus exporters and Grafana dashboards,DevOps,2025-10-20,2025-11-02,Medium,Docker orchestration,https://prometheus.io
+Monitoring & Security,Implement JWT auth and requireTenant middleware,Backend Lead,2025-10-20,2025-11-02,High,Prisma schema; Supabase,Security docs
+Monitoring & Security,Configure Traefik reverse proxy and TLS with Let's Encrypt (for Azure VM deployments),DevOps,2025-10-15,2025-10-21,High,Docker Compose,https://doc.traefik.io/traefik/
+Deployment,Write docker-compose.yml templates for self-hosted Latitude + Traefik rules,DevOps,2025-10-10,2025-10-18,High,Traefik config,latitude-llm/docker-compose.yml
+Deployment,Create .env.example with LATITUDE_API_KEY, DATABASE_URL, REDIS_URL, MIRO keys, AIRTABLE keys,DevOps,2025-10-10,2025-10-12,High,.env.example
+Deployment,Document Azure VM setup steps (SSH key, firewall, DNS),DevOps,2025-10-10,2025-10-12,High,Deployment docs
+MVP & Launch,Create staging environment and run end-to-end tests,QA Lead,2025-11-25,2025-11-30,High,All core features integrated,Deployment docs
+MVP & Launch,Finalize MVP checklist and public launch,Product,2025-12-01,2025-12-05,High,Staging verified,docs/HowAIConnects-Roadmap-Mermaid.mmd

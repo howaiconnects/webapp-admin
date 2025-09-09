@@ -1,0 +1,40 @@
+flowchart LR
+  Browser[Browser developer] -->|HTTP(S)| AdminApp[webapp-admin at localhost 3000]
+  Browser -->|HTTP(S)| UnifiedApp[unified-webapp at localhost 3001]
+  AdminApp -->|server API routes| ServerAPI[/app/api routes/]
+  ServerAPI -->|proxy calls| Airtable[Airtable third party]
+  ServerAPI -->|proxy calls| Latitude[Latitude third party]
+  ServerAPI -->|proxy calls| Miro[Miro third party]
+  ServerAPI -->|db auth and queries| Supabase[Supabase auth and Postgres]
+  ServerAPI -->|vector storage| VectorDB[Vector DB external]
+  AdminApp -->|client side requests| BrowserCache[Browser local state]
+  UnifiedApp -->|optional server API routes| UnifiedAPI[/unified app api routes/]
+  LocalProxy[Local reverse proxy scripts local-proxy.mjs] --- AdminApp
+  LocalProxy --- UnifiedApp
+  Browser -->|host header admin.local.test| LocalProxy
+  Browser -->|host header app.local.test| LocalProxy
+
+  subgraph ServerSide[Server side runtime]
+    ServerAPI
+    AdminApp
+    UnifiedAPI
+  end
+
+  subgraph ClientSide[Client side runtime]
+    Browser
+    BrowserCache
+  end
+
+  classDef secret fill:#ffdddd
+  class Airtable,Latitude,Miro,VectorDB,Supabase secret
+
+  note_right of ServerAPI
+    Server only secrets live here
+    see file reference apps/webapp-admin/app/api/airtable/route.ts
+  end
+
+  %% File references (clickable)
+  click AdminApp href "./apps/webapp-admin/app/page.tsx" "Open webapp-admin entry"
+  click ServerAPI href "./apps/webapp-admin/app/api/airtable/route.ts" "Open Airtable proxy route"
+  click LocalProxy href "./scripts/local-proxy.mjs" "Open local proxy script"
+  click UnifiedApp href "./apps/unified-webapp/app/page.tsx" "Open unified-webapp entry"

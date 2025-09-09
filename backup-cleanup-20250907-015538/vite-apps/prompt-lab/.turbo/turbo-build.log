@@ -1,0 +1,9 @@
+
+> @howaiconnects/prompt-lab@1.0.0 build /media/dimoss/SabrentSSD/Desktop/howaiconnects-webapp/apps/prompt-lab
+> vite build
+
+[36mvite v4.5.14 [32mbuilding for production...[36m[39m
+[2K[1Gtransforming (1) [2mindex.html[22m[2K[1Gtransforming (5) [2m../../node_modules/.pnpm/react@18.3.1/node_modules/react/cjs/react.production.min.js[22m[2K[1G[32m✓[39m 30 modules transformed.
+[2K[1Grendering chunks (1)...[2K[1G[2K[1Gcomputing gzip size (0)...[2K[1Gcomputing gzip size (1)...[2K[1Gcomputing gzip size (2)...[2K[1G[2mdist/[22m[32mindex.html                [39m[1m[2m  0.32 kB[22m[1m[22m[2m │ gzip:  0.23 kB[22m
+[2mdist/[22m[2massets/[22m[36mindex-443d39ac.js  [39m[1m[2m142.74 kB[22m[1m[22m[2m │ gzip: 45.93 kB[22m[2m │ map: 348.61 kB[22m
+[32m✓ built in 582ms[39m

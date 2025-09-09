@@ -1,0 +1,65 @@
+version: "3.8"
+
+services:
+  traefik:
+    image: traefik:v2.10
+    restart: unless-stopped
+    command:
+      - "--configFile=/etc/traefik/traefik.yml"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik/acme.json:/acme/acme.json
+    networks:
+      - web
+      - internal
+    labels: {}
+
+  latitude:
+    image: latitude/latitude:latest
+    restart: unless-stopped
+    env_file:
+      - ./latitude-llm/.env.local
+    networks:
+      - web
+      - internal
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.latitude.loadbalancer.server.port=3000"
+      - "traefik.http.routers.latitude.rule=Host(`latitude.totallybot.com`)"
+      - "traefik.http.routers.latitude.entrypoints=websecure"
+      - "traefik.http.routers.latitude.tls.certresolver=letsencrypt"
+
+  postgres:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: latitude
+      POSTGRES_PASSWORD: examplepassword
+      POSTGRES_DB: latitude
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - internal
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    networks:
+      - internal
+
+volumes:
+  postgres-data:
+  redis-data:
+
+networks:
+  web:
+    external: false
+  internal:
+    external: false

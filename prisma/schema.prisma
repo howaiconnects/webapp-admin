@@ -1,0 +1,257 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  admin
+}
+
+enum MiroDiagramType {
+  MINDMAP
+  FLOWCHART
+  KANBAN
+  USERJOURNEY
+  WIREFRAME
+  CUSTOM
+}
+
+enum WebhookStatus {
+  ACTIVE
+  PAUSED
+  FAILED
+  INACTIVE
+}
+
+model MiroAccount {
+  id                String   @id @default(cuid())
+  organizationId    String
+  accessToken       String   @db.Text // Encrypted
+  refreshToken      String   @db.Text // Encrypted
+  tokenExpiry       DateTime
+  scopes            String[] 
+  teamId            String?
+  userId            String
+  
+  // Performance indexes
+  @@index([organizationId, userId])
+  @@index([tokenExpiry]) // For token refresh queries
+  
+  boards            MiroBoard[]
+  webhooks          MiroWebhook[]
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model MiroBoard {
+  id                String   @id @default(cuid())
+  boardId           String   @unique // Miro's board ID
+  accountId         String
+  title             String
+  description       String?  @db.Text
+  viewLink          String
+  modifiedAt        DateTime
+  
+  // Cached metadata for performance
+  cachedThumbnail   String?  @db.Text
+  cachedItemCount   Int      @default(0)
+  cachedViewerCount Int      @default(0)
+  lastCacheUpdate   DateTime?
+  
+  // AI-specific fields
+  aiGeneratedContent Json?   // Store AI-generated diagrams/mindmaps
+  aiPromptHistory    Json[]  // Track generation history
+  
+  account           MiroAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  diagrams          MiroDiagram[]
+  collaborationLogs MiroCollaborationLog[]
+  
+  // Composite indexes for query optimization
+  @@index([accountId, modifiedAt(sort: Desc)])
+  @@index([lastCacheUpdate]) // For cache invalidation
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model MiroDiagram {
+  id                String   @id @default(cuid())
+  boardId           String
+  diagramType       MiroDiagramType
+  content           Json     // Optimized JSON structure
+  metadata          Json?    // Additional metadata
+  version           Int      @default(1)
+  
+  board             MiroBoard @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  
+  @@index([boardId, diagramType])
+  @@index([version])
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model MiroWebhook {
+  id                String   @id @default(cuid())
+  webhookId         String   @unique // Miro's webhook ID
+  accountId         String
+  boardId           String?
+  eventType         String[] // board.updated, item.created, etc.
+  callbackUrl       String
+  status            WebhookStatus @default(ACTIVE)
+  secret            String   @db.Text // For signature verification
+  
+  // Performance tracking
+  lastEventAt       DateTime?
+  eventCount        Int      @default(0)
+  errorCount        Int      @default(0)
+  avgProcessingTime Float?   // In milliseconds
+  
+  account           MiroAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  
+  @@index([status, lastEventAt])
+  @@index([boardId])
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model MiroCollaborationLog {
+  id                String   @id @default(cuid())
+  boardId           String
+  userId            String
+  action            String   // view, edit, comment, etc.
+  metadata          Json?
+  sessionId         String?  // For grouping related actions
+  
+  board             MiroBoard @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  
+  // Partitioning strategy index for time-series data
+  @@index([boardId, createdAt(sort: Desc)])
+  @@index([sessionId])
+  
+  createdAt         DateTime @default(now())
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  role      Role     @default(admin)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subscriptions Subscription[]
+
+  @@map("users")
+}
+
+model Organization {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("organizations")
+}
+
+model Project {
+  id             Int      @id @default(autoincrement())
+  name           String
+  description    String?
+  organizationId Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model PricingTier {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique // 'Free', 'Pro', 'Enterprise'
+  slug        String   @unique
+  priceMonthly Decimal @default(0.00)
+  priceAnnual  Decimal @default(0.00)
+  currency    String   @default("USD")
+  description String?
+  features    Json     // Array of feature descriptions
+  limits      Json     // { chatMessages: 50, apiCalls: 100, storageGB: 0.1 }
+  isActive    Boolean  @default(true)
+  
+  subscriptions Subscription[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("pricing_tiers")
+}
+
+model Subscription {
+  id              Int      @id @default(autoincrement())
+  userId          Int
+  pricingTierId   Int
+  stripeCustomerId String?  @unique // For Stripe sync
+  stripeSubscriptionId String? @unique
+  status          String   // 'active', 'trialing', 'canceled', 'past_due'
+  currentPeriodStart DateTime?
+  currentPeriodEnd DateTime?
+  trialEnd        DateTime?
+  quantity        Int      @default(1) // For usage-based scaling
+  metadata        Json?
+  
+  user          User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pricingTier   PricingTier @relation(fields: [pricingTierId], references: [id])
+  usages        Usage[]
+  payments      Payment[]
+  
+  @@index([userId])
+  @@index([status])
+  @@index([pricingTierId])
+  @@map("subscriptions")
+}
+
+model Usage {
+  id              Int      @id @default(autoincrement())
+  subscriptionId  Int
+  type            String   // 'chat_message', 'api_call', 'crawl_page', 'storage_mb'
+  quantity        Int      @default(1)
+  periodStart     DateTime
+  periodEnd       DateTime
+  metadata        Json?
+  
+  subscription Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+  
+  @@index([subscriptionId])
+  @@index([type])
+  @@index([periodStart])
+  @@map("usages")
+}
+
+model Payment {
+  id                  Int      @id @default(autoincrement())
+  subscriptionId      Int?
+  stripePaymentIntentId String  @unique
+  stripeChargeId      String?
+  amount              Decimal
+  currency            String
+  status              String   // 'succeeded', 'pending', 'failed'
+  description         String?
+  receiptUrl          String?
+  metadata            Json?
+  
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+  
+  @@index([subscriptionId])
+  @@index([status])
+  @@map("payments")
+}

@@ -1,0 +1,60 @@
+
+Software,Documentation_Category,Description,Doc_URL
+Latitude,Getting Started,Introductory guides and onboarding,https://docs.latitude.so/guides/getting-started/introduction
+Latitude,Prompts,Prompt manager for creating and versioning prompts,https://docs.latitude.so
+Latitude,Agents,Manage agents and subagents,https://docs.latitude.so
+Latitude,Evaluations,Run evaluations and prompt suggestions,https://docs.latitude.so
+Latitude,Datasets,Manage test data for batch evaluations,https://docs.latitude.so
+Latitude,Experiments,Run experiments over prompt variations,https://docs.latitude.so
+Latitude,Deployment,Publish prompts as endpoints and manage API,https://docs.latitude.so
+Latitude,Self-Hosting,Development setup and production deployment,https://docs.latitude.so
+Latitude,Changelog,Release notes and updates,https://docs.latitude.so
+Latitude,Support,Community and support resources,https://docs.latitude.so
+Miro,Platform Essentials,Intro developer team app manifest concepts,https://developers.miro.com/docs/introduction
+Miro,Web SDK,SDK introduction onboarding tutorials reference,https://developers.miro.com/docs/web-sdk
+Miro,REST API,REST API introduction and getting started,https://developers.miro.com/docs/rest-api
+Airtable,General,Introduction authentication and general concepts,https://airtable.com/developers/web/api/introduction
+Airtable,Data Operations,CRUD operations for records fields tables and webhooks,https://airtable.com/developers/web/api/api-reference
+Airtable,Permissions & Enterprise,Workspaces collaborators user groups and audit logs,https://airtable.com/developers/web/api/introduction
+Airtable,Guides,Guides and tutorials for using the API,https://airtable.com/developers/web/api/introduction
+Supabase,Database,Postgres database with realtime and backups,https://supabase.com/docs
+Supabase,Auth,Passwordless and OAuth identity management,https://supabase.com/docs
+Supabase,Storage,Secure file storage integrated with Postgres,https://supabase.com/docs
+Supabase,Realtime,Listen to database changes and broadcast state,https://supabase.com/docs
+Supabase,Edge Functions,Distributed server-side functions for low-latency code,https://supabase.com/docs
+Qdrant,Getting Started,Intro local quickstart and API & SDKs,https://qdrant.tech/documentation/
+Qdrant,Concepts,Collections points vectors search and indexing concepts,https://qdrant.tech/documentation/
+Qdrant,Guides,Installation administration GPU capacity planning and more,https://qdrant.tech/documentation/
+Qdrant,Ecosystem,FastEmbed integrations and related tools,https://qdrant.tech/documentation/
+Qdrant,Tutorials,Vector search basics and advanced retrieval tutorials,https://qdrant.tech/documentation/
+Qdrant,Support,FAQ and release notes,https://qdrant.tech/documentation/
+AI Foundry,Overview,Overview of Azure AI Foundry and responsible AI,https://learn.microsoft.com/en-us/azure/ai-foundry/
+AI Foundry,Create apps with code,Quickstart templates and starting an AI app,https://learn.microsoft.com/en-us/azure/ai-foundry/
+AI Foundry,Models,Featured models comparisons deployment options and fine-tuning,https://learn.microsoft.com/en-us/azure/ai-foundry/
+AI Foundry,Agent Service,Orchestrate and host AI agents create custom agents,https://learn.microsoft.com/en-us/azure/ai-foundry/
+AI Foundry,Protect & Govern,Trustworthy AI content safety and monitoring,https://learn.microsoft.com/en-us/azure/ai-foundry/
+AI Foundry,AI Search,Agentic retrieval and RAG solutions,https://learn.microsoft.com/en-us/azure/ai-foundry/
+AI Foundry,AI Services,Azure AI services like Speech Vision and Language,https://learn.microsoft.com/en-us/azure/ai-foundry/
+AI Foundry,Machine Learning,Training models pipelines and AutoML,https://learn.microsoft.com/en-us/azure/ai-foundry/
+AI Foundry,Foundry Local,Running LLMs locally and SDK documentation,https://learn.microsoft.com/en-us/azure/ai-foundry/
+Bright Data,Proxy Infrastructure,Access proxies and browse any website,https://docs.brightdata.com
+Bright Data,Web Access APIs,Automate web data collection via APIs,https://docs.brightdata.com
+Bright Data,Data Feeds,Curated data feeds from targeted websites,https://docs.brightdata.com
+Bright Data,MCP Server,Master Control Proxy server,https://docs.brightdata.com
+Bright Data,API Reference,Reference for proxy and data APIs,https://docs.brightdata.com
+Bright Data,Integrations,Guides for integrating Bright Data into your stack,https://docs.brightdata.com
+Bright Data,Getting Started,Quick start for proxies APIs feeds and SDK,https://docs.brightdata.com
+CrewAI,Get Started,Introduction installation and quickstart,https://docs.crewai.com/en/introduction
+CrewAI,Guides,Strategy agents crews flows and advanced topics,https://docs.crewai.com/en/introduction
+CrewAI,Core Concepts,Agents tasks and crews explained,https://docs.crewai.com/en/introduction
+WowDash Admin Template,Introduction,Overview and key features of the template,file:///home/oai/share/index.html
+WowDash Admin Template,Getting Started,Instructions for setup and layout structure,file:///home/oai/share/index.html
+WowDash Admin Template,Node.js Structure,Node.js folder and file structure,file:///home/oai/share/index.html
+WowDash Admin Template,Dark Layout,Instructions for dark mode configuration,file:///home/oai/share/index.html
+WowDash Admin Template,RTL Layout,Right-to-left layout guidance,file:///home/oai/share/index.html
+WowDash Admin Template,CSS,Overview of CSS stylesheets,file:///home/oai/share/css.html
+WowDash Admin Template,SCSS,Overview of SCSS files,file:///home/oai/share/css.html
+WowDash Admin Template,JavaScript,JavaScript file structure and libraries,file:///home/oai/share/js.html
+WowDash Admin Template,Basic Components,Buttons dropdowns and alerts,file:///home/oai/share/basic-components.html
+WowDash Admin Template,Advanced Components,Higher level UI components,file:///home/oai/share/advance-components.html
+WowDash Admin Template,Forms,Form elements and validation,file:///home/oai/share/forms.html

@@ -1,0 +1,450 @@
+/* Design System Styles for WebApp Admin */
+/* Based on WowDash template theme implementation */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* ===========================================
+   CSS Custom Properties (Design Tokens)
+   =========================================== */
+
+:root {
+  /* Font Family */
+  --default-font: 'Inter', ui-sans-serif, system-ui;
+
+  /* Font Sizes */
+  --h1: clamp(2rem, 1.2rem + 4vw, 4.5rem);
+  --h2: clamp(1.75rem, 1.11rem + 3.2vw, 3.75rem);
+  --h3: clamp(1.5rem, 1.02rem + 2.4vw, 3rem);
+  --h4: clamp(1.375rem, 1.095rem + 1.4vw, 2.25rem);
+  --h5: clamp(1.25rem, 1.05rem + 1vw, 1.875rem);
+  --h6: clamp(1.125rem, 1.005rem + 0.6vw, 1.5rem);
+
+  /* Spacing */
+  --size-2: 0.125rem;
+  --size-4: 0.25rem;
+  --size-6: 0.375rem;
+  --size-8: 0.5rem;
+  --size-10: 0.625rem;
+  --size-12: 0.75rem;
+  --size-16: 1rem;
+  --size-20: 1.25rem;
+  --size-24: 1.5rem;
+  --size-32: 2rem;
+  --size-40: 2.5rem;
+  --size-48: 3rem;
+  --size-64: 4rem;
+
+  /* Border Radius */
+  --rounded-2: 0.125rem;
+  --rounded-4: 0.25rem;
+  --rounded-6: 0.375rem;
+  --rounded-8: 0.5rem;
+  --rounded-12: 0.75rem;
+  --rounded-16: 1rem;
+
+  /* Shadows */
+  --shadow-1: 0 4px 60px 0 rgba(4, 6, 15, 0.8);
+  --shadow-2: 0 4px 60px 0 rgba(4, 6, 15, 0.5);
+  --shadow-3: 0 20px 100px 0 rgba(4, 6, 15, 0.8);
+  --shadow-4: 4px 8px 24px 0 rgba(182, 182, 182, 0.20);
+
+  /* Font Sizes */
+  --font-2xxl: 2rem;
+  --font-2xl: 1.75rem;
+  --font-xxl: 1.5rem;
+  --font-xl: 1.25rem;
+  --font-lg: 1.125rem;
+  --font-md: 1rem;
+  --font-sm: 0.875rem;
+  --font-xs: 0.75rem;
+  --font-xxs: 0.625rem;
+
+  /* Primary Colors (HowAIConnects Blue) */
+  --primary-50: #f0f8ff;
+  --primary-100: #e0f0fe;
+  --primary-200: #bae6fd;
+  --primary-300: #7dd3fc;
+  --primary-400: #38bdf8;
+  --primary-500: #0ea5e9;
+  --primary-600: #0284c7;
+  --primary-700: #0369a1;
+  --primary-800: #075985;
+  --primary-900: #0c4a6e;
+
+  /* Neutral Colors */
+  --neutral-50: #f5f6fa;
+  --neutral-100: #f3f4f6;
+  --neutral-200: #e5e7eb;
+  --neutral-300: #d1d5db;
+  --neutral-400: #9ca3af;
+  --neutral-500: #6b7280;
+  --neutral-600: #4b5563;
+  --neutral-700: #374151;
+  --neutral-800: #1f2937;
+  --neutral-900: #111827;
+
+  /* Semantic Colors */
+  --success-50: #f0fdf4;
+  --success-100: #dcfce7;
+  --success-200: #bbf7d0;
+  --success-300: #86efac;
+  --success-400: #4ade80;
+  --success-500: #22c55e;
+  --success-600: #16a34a;
+  --success-700: #15803d;
+  --success-800: #166534;
+  --success-900: #14532d;
+
+  --info-50: #eff6ff;
+  --info-100: #dbeafe;
+  --info-200: #bfdbfe;
+  --info-300: #93c5fd;
+  --info-400: #60a5fa;
+  --info-500: #3b82f6;
+  --info-600: #2563eb;
+  --info-700: #1d4ed8;
+  --info-800: #1e40af;
+  --info-900: #1e3a8a;
+
+  --warning-50: #fefce8;
+  --warning-100: #fef9c3;
+  --warning-200: #fef08a;
+  --warning-300: #fde047;
+  --warning-400: #facc15;
+  --warning-500: #eab308;
+  --warning-600: #ca8a04;
+  --warning-700: #a16207;
+  --warning-800: #854d0e;
+  --warning-900: #713f12;
+
+  --danger-50: #fef2f2;
+  --danger-100: #fee2e2;
+  --danger-200: #fecaca;
+  --danger-300: #fca5a5;
+  --danger-400: #f87171;
+  --danger-500: #ef4444;
+  --danger-600: #dc2626;
+  --danger-700: #b91c1c;
+  --danger-800: #991b1b;
+  --danger-900: #7f1d1d;
+
+  /* Dark Colors */
+  --dark-1: #1b2431;
+  --dark-2: #273142;
+  --dark-3: #323d4e;
+
+  /* Light Colors */
+  --light-50: #f5f6fa;
+  --light-100: #f3f4f6;
+  --light-600: #e4f1ff;
+  --light-700: #374151;
+  --light-800: #1f2937;
+
+  /* Design Token Variables */
+  --base: #fff;
+  --brand: var(--primary-600);
+  --button-secondary: var(--primary-50);
+  --black: var(--dark-2);
+  --white: var(--base);
+  --bg-color: var(--neutral-50);
+  --text-primary-light: var(--neutral-900);
+  --text-secondary-light: var(--neutral-600);
+  --text-secondary-dark: var(--neutral-300);
+
+  --input-form-light: var(--neutral-300);
+  --input-form-dark: var(--neutral-500);
+  --input-bg: var(--neutral-50);
+  --input-stroke: var(--neutral-300);
+
+  --border-color: #d1d5db80;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --button-secondary: var(--neutral-300);
+  --black: var(--base);
+  --white: var(--dark-2);
+  --bg-color: var(--dark-1);
+  --text-primary-light: var(--base);
+  --text-secondary-light: #d1d5db;
+  --text-secondary-dark: var(--dark-2);
+
+  --input-form-light: #6b7280;
+  --input-form-dark: #d1d5db;
+  --input-bg: var(--dark-3);
+  --input-stroke: #f3f4f6;
+
+  --primary-50: rgba(240, 248, 255, 0.06);
+  --info-50: rgba(239, 246, 255, 0.06);
+  --warning-50: rgba(254, 252, 232, 0.06);
+  --success-50: rgba(240, 253, 244, 0.06);
+  --danger-50: rgba(254, 242, 242, 0.06);
+
+  --border-color: rgba(209, 213, 219, 0.2);
+}
+
+/* ===========================================
+   Utility Classes
+   =========================================== */
+
+/* Text Colors */
+.text-primary-50 { color: var(--primary-50) !important; }
+.text-primary-100 { color: var(--primary-100) !important; }
+.text-primary-200 { color: var(--primary-200) !important; }
+.text-primary-300 { color: var(--primary-300) !important; }
+.text-primary-400 { color: var(--primary-400) !important; }
+.text-primary-500 { color: var(--primary-500) !important; }
+.text-primary-600 { color: var(--primary-600) !important; }
+.text-primary-700 { color: var(--primary-700) !important; }
+.text-primary-800 { color: var(--primary-800) !important; }
+.text-primary-900 { color: var(--primary-900) !important; }
+
+.text-neutral-50 { color: var(--neutral-50) !important; }
+.text-neutral-100 { color: var(--neutral-100) !important; }
+.text-neutral-200 { color: var(--neutral-200) !important; }
+.text-neutral-300 { color: var(--neutral-300) !important; }
+.text-neutral-400 { color: var(--neutral-400) !important; }
+.text-neutral-500 { color: var(--neutral-500) !important; }
+.text-neutral-600 { color: var(--neutral-600) !important; }
+.text-neutral-700 { color: var(--neutral-700) !important; }
+.text-neutral-800 { color: var(--neutral-800) !important; }
+.text-neutral-900 { color: var(--neutral-900) !important; }
+
+.text-success-500 { color: var(--success-500) !important; }
+.text-success-600 { color: var(--success-600) !important; }
+.text-info-500 { color: var(--info-500) !important; }
+.text-info-600 { color: var(--info-600) !important; }
+.text-warning-500 { color: var(--warning-500) !important; }
+.text-warning-600 { color: var(--warning-600) !important; }
+.text-danger-500 { color: var(--danger-500) !important; }
+.text-danger-600 { color: var(--danger-600) !important; }
+
+.text-primary-light { color: var(--text-primary-light) !important; }
+.text-secondary-light { color: var(--text-secondary-light) !important; }
+.text-secondary-dark { color: var(--text-secondary-dark) !important; }
+.text-base { color: var(--white) !important; }
+.text-black { color: var(--black) !important; }
+
+/* Background Colors */
+.bg-primary-50 { background-color: var(--primary-50) !important; }
+.bg-primary-100 { background-color: var(--primary-100) !important; }
+.bg-primary-200 { background-color: var(--primary-200) !important; }
+.bg-primary-300 { background-color: var(--primary-300) !important; }
+.bg-primary-400 { background-color: var(--primary-400) !important; }
+.bg-primary-500 { background-color: var(--primary-500) !important; }
+.bg-primary-600 { background-color: var(--primary-600) !important; }
+.bg-primary-700 { background-color: var(--primary-700) !important; }
+.bg-primary-800 { background-color: var(--primary-800) !important; }
+.bg-primary-900 { background-color: var(--primary-900) !important; }
+
+.bg-neutral-50 { background-color: var(--neutral-50) !important; }
+.bg-neutral-100 { background-color: var(--neutral-100) !important; }
+.bg-neutral-200 { background-color: var(--neutral-200) !important; }
+.bg-neutral-300 { background-color: var(--neutral-300) !important; }
+.bg-neutral-400 { background-color: var(--neutral-400) !important; }
+.bg-neutral-500 { background-color: var(--neutral-500) !important; }
+.bg-neutral-600 { background-color: var(--neutral-600) !important; }
+.bg-neutral-700 { background-color: var(--neutral-700) !important; }
+.bg-neutral-800 { background-color: var(--neutral-800) !important; }
+.bg-neutral-900 { background-color: var(--neutral-900) !important; }
+
+.bg-success-50 { background-color: var(--success-50) !important; }
+.bg-success-100 { background-color: var(--success-100) !important; }
+.bg-success-500 { background-color: var(--success-500) !important; }
+.bg-success-600 { background-color: var(--success-600) !important; }
+
+.bg-info-50 { background-color: var(--info-50) !important; }
+.bg-info-100 { background-color: var(--info-100) !important; }
+.bg-info-500 { background-color: var(--info-500) !important; }
+.bg-info-600 { background-color: var(--info-600) !important; }
+
+.bg-warning-50 { background-color: var(--warning-50) !important; }
+.bg-warning-100 { background-color: var(--warning-100) !important; }
+.bg-warning-500 { background-color: var(--warning-500) !important; }
+.bg-warning-600 { background-color: var(--warning-600) !important; }
+
+.bg-danger-50 { background-color: var(--danger-50) !important; }
+.bg-danger-100 { background-color: var(--danger-100) !important; }
+.bg-danger-500 { background-color: var(--danger-500) !important; }
+.bg-danger-600 { background-color: var(--danger-600) !important; }
+
+.bg-base { background-color: var(--white) !important; }
+.bg-dark-1 { background-color: var(--dark-1) !important; }
+.bg-dark-2 { background-color: var(--dark-2) !important; }
+.bg-dark-3 { background-color: var(--dark-3) !important; }
+
+/* Hover Effects */
+.hover-text-primary:hover { color: var(--primary-600) !important; }
+.hover-bg-primary-600:hover { background-color: var(--primary-600) !important; }
+
+/* Border Colors */
+.border-neutral-200 { border-color: var(--neutral-200) !important; }
+.border-neutral-300 { border-color: var(--neutral-300) !important; }
+.border-primary-600 { border-color: var(--primary-600) !important; }
+
+/* ===========================================
+   Layout Components
+   =========================================== */
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: -100%;
+  width: 250px;
+  height: 100vh;
+  background-color: var(--white);
+  z-index: 3;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 1280px) {
+  .sidebar {
+    inset-inline-start: 0;
+    width: 220px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .sidebar {
+    width: 275px;
+  }
+}
+
+@media (min-width: 1650px) {
+  .sidebar {
+    width: 312px;
+  }
+}
+
+.sidebar.sidebar-open {
+  inset-inline-start: 0;
+}
+
+.sidebar-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--input-form-light);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 1280px) {
+  .sidebar-close-btn {
+    display: none;
+  }
+}
+
+.sidebar-logo {
+  height: 72px;
+  padding: 14px 16px;
+  border-right: 1px solid var(--neutral-200);
+  border-bottom: 1px solid var(--neutral-200);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.sidebar-menu-area {
+  height: calc(100vh - 72px);
+  padding: 12px 16px;
+  overflow-y: auto;
+  border-right: 1px solid var(--neutral-200);
+}
+
+/* Navbar */
+.navbar-header {
+  height: 72px;
+  background-color: var(--white);
+  position: sticky;
+  top: 0;
+  padding: 16px 24px;
+  z-index: 2;
+}
+
+/* ===========================================
+   Theme Classes
+   =========================================== */
+
+.admin-theme {
+  --bg-color: var(--dark-1);
+  --text-primary-light: var(--base);
+  --text-secondary-light: #d1d5db;
+  background-color: var(--bg-color);
+  color: var(--text-primary-light);
+}
+
+.admin-theme .sidebar,
+.admin-theme .navbar-header {
+  background-color: var(--dark-2);
+  border-color: var(--neutral-700);
+}
+
+.admin-theme .sidebar-menu li a {
+  color: var(--text-secondary-light);
+}
+
+.admin-theme .sidebar-menu li a:hover,
+.admin-theme .sidebar-menu li a.active-page {
+  color: var(--primary-400);
+  background-color: var(--primary-900);
+}
+
+.user-theme {
+  --bg-color: var(--neutral-50);
+  --text-primary-light: var(--neutral-900);
+  --text-secondary-light: var(--neutral-600);
+  background-color: var(--bg-color);
+  color: var(--text-primary-light);
+}
+
+.user-theme .sidebar,
+.user-theme .navbar-header {
+  background-color: var(--white);
+  border-color: var(--neutral-200);
+}
+
+.user-theme .sidebar-menu li a {
+  color: var(--text-secondary-light);
+}
+
+.user-theme .sidebar-menu li a:hover,
+.user-theme .sidebar-menu li a.active-page {
+  color: var(--primary-600);
+  background-color: var(--primary-50);
+}
+
+/* ===========================================
+   Responsive Design
+   =========================================== */
+
+@media (max-width: 1279px) {
+  .sidebar {
+    width: 250px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .main-content {
+    margin-left: 220px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .main-content {
+    margin-left: 275px;
+  }
+}
+
+@media (min-width: 1650px) {
+  .main-content {
+    margin-left: 312px;
+  }
+}

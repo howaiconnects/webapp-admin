@@ -1,0 +1,43 @@
+{
+  "name": "@howaiconnects/webapp-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HowAIConnects Admin Dashboard - Next.js 15",
+  "scripts": {
+    "dev": "PORT=3002 CHOKIDAR_USEPOLLING=true ../../scripts/dev-with-env.cjs",
+    "build": "../../scripts/dev-with-env.cjs next build",
+    "start": "../../scripts/dev-with-env.cjs next start",
+    "lint": "next lint",
+    "test": "jest --config jest.config.cjs",
+    "test:e2e": "cypress run",
+    "test:e2e:open": "cypress open",
+    "test:adapters": "cd ../../packages/adapters && npm test"
+  },
+  "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
+    "@supabase/ssr": "^0.7.0",
+    "@supabase/supabase-js": "^2.57.2",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.0",
+    "next": "15.0.0",
+    "postcss": "^8.4.32",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@types/jest": "^30.0.0",
+    "cypress": "^15.1.0",
+    "jest": "^29.7.0",
+    "node-mocks-http": "^1.17.2",
+    "ts-jest": "^29.4.1",
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,0 +1,49 @@
+gantt
+    title How AI Connects Platform Roadmap (Option B Detailed)
+    dateFormat  YYYY-MM-DD
+    excludes    weekends
+
+    section Vision
+    Project Vision Synopsis            :done,    vision, 2025-09-02, 1d
+
+    section Foundational Setup
+    Create monorepo layout             :active,  monorepo, 2025-09-08, 5d
+    Import WowDash template            :done,    wowdash-import, 2025-09-08, 1d
+    Copy WowDash working copy          :active,  wowdash-copy, 2025-09-08, 14d
+    Create .env.example and .env.unified :done, env-setup, 2025-09-08, 3d
+    Setup pnpm workspaces & Turborepo  :done,   pnpm-turbo, 2025-09-08, 5d
+    Configure Docker Compose           :active, docker-compose, 2025-09-08, 14d
+
+    section Supabase & Data
+    Define Prisma schema & migrations :active, prisma-schema, 2025-09-08, 14d
+    Provision Supabase/Postgres        :active, supabase-provision, 2025-09-10, 5d
+
+    section Prompt Lab & Adapters
+    Scaffold prompt-lab & adapters     :done,   promptlab-scaffold, 2025-09-15, 7d
+    Implement Latitude adapter         :planned, latitude-adapter, 2025-10-06, 7d
+    Implement Airtable adapter         :planned, airtable-adapter, 2025-10-06, 7d
+    Build Airtable <-> Latitude sync   :planned, sync-script, 2025-10-13, 7d
+
+    section Miro Integration
+    Create miro-adapter                :planned, miro-adapter, 2025-09-22, 7d
+    Develop MiroBoard React component :planned, miro-ui, 2025-09-29, 7d
+    Wire Miro into Prompt Lab          :planned, miro-promptlab, 2025-10-06, 7d
+
+    section Agent & Automation
+    CrewAI adapter implementation     :planned, crewai-adapter, 2025-10-20, 10d
+    Zapier adapter & webhook endpoints :planned, zapier-adapter, 2025-11-03, 7d
+
+    section Data Pipeline & Crawling
+    Integrate Bright Data / Crawl4AI  :planned, brightdata-integration, 2025-11-03, 14d
+    Implement adaptive crawling & AI Foundry :planned, adaptive-crawling, 2025-11-17, 14d
+
+    section Vector DB & Search
+    Integrate Qdrant vector DB         :planned, qdrant-integration, 2025-11-17, 14d
+
+    section Monitoring & Security
+    Prometheus & Grafana dashboards    :planned, monitoring, 2025-10-20, 14d
+    JWT auth and tenant enforcement    :planned, security, 2025-10-20, 14d
+
+    section MVP & Launch
+    End-to-end testing & staging       :planned, testing, 2025-11-25, 6d
+    Finalize MVP checklist and launch  :planned, launch, 2025-12-01, 5d

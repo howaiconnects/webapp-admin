@@ -1,0 +1,15 @@
+{
+  "name": "howaiconnects-zapier-integration",
+  "version": "0.0.0-dev",
+  "private": true,
+  "description": "Helper package for local testing of the HowAIConnects Zapier integration (local test server + scripts).",
+  "scripts": {
+    "start-local-server": "node local_test_server.js",
+    "test-auth-mock": "MOCK_AUTH=1 node auth.test.js",
+    "test-auth-local": "node auth.test.js",
+    "install-deps": "npm install express"
+  },
+  "devDependencies": {
+    "express": "^4.18.2"
+  }
+}

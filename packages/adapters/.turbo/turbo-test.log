@@ -1,0 +1,40 @@
+
+> @howaiconnects/adapters@1.0.0 test /home/runner/work/howaiconnects-webapp/howaiconnects-webapp/packages/adapters
+> jest
+
+[999D[K  [2m[31mconsole.error[39m[22m
+[31m    Failed to connect to Latitude: TypeError: fetch failed[39m
+[31m        at node:internal/deps/undici/undici:13510:13[39m
+[31m        at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+[31m        at LatitudeAdapter.connect (/home/runner/work/howaiconnects-webapp/howaiconnects-webapp/packages/adapters/latitude-adapter.ts:50:24)[39m
+[31m        at Object.<anonymous> (/home/runner/work/howaiconnects-webapp/howaiconnects-webapp/packages/adapters/__tests__/latitude-adapter.test.ts:11:20) {[39m
+[31m      [cause]: Error: getaddrinfo ENOTFOUND test.com[39m
+[31m          at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26) {[39m
+[31m        errno: -3007,[39m
+[31m        code: 'ENOTFOUND',[39m
+[31m        syscall: 'getaddrinfo',[39m
+[31m        hostname: 'test.com'[39m
+[31m      }[39m
+[31m    }[39m
+[2m[22m
+[2m    [0m [90m 55 |[39m       [36mreturn[39m response[33m.[39mok[33m;[39m[22m
+[2m     [90m 56 |[39m     } [36mcatch[39m (error) {[22m
+[2m    [31m[1m>[22m[2m[39m[90m 57 |[39m       console[33m.[39merror([32m'Failed to connect to Latitude:'[39m[33m,[39m error)[33m;[39m[22m
+[2m     [90m    |[39m               [31m[1m^[22m[2m[39m[22m
+[2m     [90m 58 |[39m       [36mreturn[39m [36mfalse[39m[33m;[39m[22m
+[2m     [90m 59 |[39m     }[22m
+[2m     [90m 60 |[39m   }[0m[22m
+[2m[22m
+[2m      [2mat LatitudeAdapter.connect ([22m[2mlatitude-adapter.ts[2m:57:15)[22m[2m[22m
+[2m      [2mat Object.<anonymous> ([22m[2m[0m[36m__tests__/latitude-adapter.test.ts[39m[0m[2m:11:20)[22m[2m[22m
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2m__tests__/[22m[1mlatitude-adapter.test.ts[22m
+  LatitudeAdapter
+    [32m✓[39m [2mshould create an adapter instance (3 ms)[22m
+    [32m✓[39m [2mshould initially return false for connection (128 ms)[22m
+
+[999D[K[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 total
+[1mTests:       [22m[1m[32m2 passed[39m[22m, 2 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2.41 s
+[2mRan all test suites[22m[2m.[22m

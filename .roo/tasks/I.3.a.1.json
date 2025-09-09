@@ -1,0 +1,22 @@
+{
+  "id": "I.3.a.1",
+  "branchPushed": "fix/miro-wiring",
+  "commits": [
+    {
+      "sha": "642714711df88196edd9ac7f938ebcfceee6f71e",
+      "message": "WIP: restore stashed changes before pushing fix/miro-wiring"
+    },
+    {
+      "sha": "16b2fcb031ff145c01d2c56c586314584c874c0b",
+      "message": "Merge branch 'main' into fix/miro-wiring"
+    },
+    {
+      "sha": "a6dea735bf7178ace7ef197399ac610384a7aba4",
+      "message": "fix(api): harden miro api route and env-driven config"
+    }
+  ],
+  "stashRef": "stash@{0}",
+  "stashAppliedOnTaskBranch": true,
+  "stashPoppedOn": "fix/miro-wiring",
+  "updatedAt": "2025-09-08T13:54:43.839Z"
+}

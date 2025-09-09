@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HowAIConnects Zapier Integration Schemas",
+  "description": "Input/output JSON schemas for Zapier actions and triggers (Create User, Create Prompt, New Prompt Log).",
+  "schemas": {
+    "create_user": {
+      "input": {
+        "type": "object",
+        "required": ["email"],
+        "properties": {
+          "email": { "type": "string", "format": "email", "description": "User's email address" },
+          "password": { "type": "string", "description": "Optional password; if omitted the server may invite or auto-generate" },
+          "name": { "type": "string", "description": "Optional full name of the user" },
+          "metadata": {
+            "oneOf": [
+              { "type": "object", "description": "Arbitrary JSON metadata" },
+              { "type": "string", "description": "JSON string representing metadata" }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "required": ["id", "email", "created_at"],
+        "properties": {
+          "id": { "type": "string", "description": "User id" },
+          "email": { "type": "string", "format": "email" },
+          "name": { "type": ["string", "null"] },
+          "created_at": { "type": "string", "format": "date-time" },
+          "metadata": { "type": ["object", "null"], "description": "Metadata returned by server" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "create_prompt": {
+      "input": {
+        "type": "object",
+        "required": ["user_id", "request_payload"],
+        "properties": {
+          "user_id": { "type": "string", "description": "The id of the user making the prompt" },
+          "request_payload": { "type": ["object", "string"], "description": "Prompt request payload (object or JSON string)" },
+          "model": { "type": "string", "description": "Optional model identifier" },
+          "metadata": { "type": ["object", "string"], "description": "Optional metadata for the prompt" }
+        },
+        "additionalProperties": false
+      },
+      "output": {
+        "type": "object",
+        "required": ["id", "user_id", "response_body", "created_at"],
+        "properties": {
+          "id": { "type": "string", "description": "Prompt record id" },
+          "user_id": { "type": "string" },
+          "request_payload": { "type": ["object", "string"] },
+          "response_body": { "type": ["object", "string"], "description": "Model response body or structured object" },
+          "status": { "type": "string", "description": "Status e.g., pending, completed" },
+          "created_at": { "type": "string", "format": "date-time" },
+          "completed_at": { "type": ["string", "null"], "format": "date-time" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "new_prompt_log": {
+      "output_item": {
+        "type": "object",
+        "required": ["id", "user_id", "request_payload", "response_body", "created_at"],
+        "properties": {
+          "id": { "type": "string", "description": "Log id" },
+          "user_id": { "type": "string" },
+          "request_payload": { "type": ["object", "string"] },
+          "response_body": { "type": ["object", "string"] },
+          "created_at": { "type": "string", "format": "date-time" },
+          "metadata": { "type": ["object", "null"] }
+        },
+        "additionalProperties": true
+      },
+      "trigger": {
+        "type": "array",
+        "items": { "$ref": "#/schemas/new_prompt_log/output_item" }
+      }
+    }
+  }
+}

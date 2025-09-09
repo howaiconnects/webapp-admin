@@ -1,0 +1,87 @@
+{
+  "version": "1.0.0",
+  "settings": {
+    "mcp": {
+      "configPath": "/mnt/c/Users/Adham/Dropbox/github/.roo-config/mcp-servers/global-config.json",
+      "autoConnect": true,
+      "retryAttempts": 5,
+      "timeout": 45000,
+      "experimentalFeatures": true,
+      "debugMode": true
+    },
+    "ui": {
+      "theme": "dark",
+      "fontSize": "medium",
+      "showLineNumbers": true,
+      "wordWrap": true,
+      "experimentalUI": true,
+      "betaFeatures": true
+    },
+    "editor": {
+      "tabSize": 2,
+      "insertSpaces": true,
+      "autoSave": true,
+      "formatOnSave": true,
+      "aiAssist": true,
+      "codeCompletion": "aggressive"
+    },
+    "ai": {
+      "model": "claude-3-5-sonnet-20241022",
+      "temperature": 0.7,
+      "maxTokens": 8192,
+      "streaming": true,
+      "experimentalModels": true,
+      "multiModalSupport": true
+    },
+    "project": {
+      "autoDetectProjectType": true,
+      "defaultProjectPath": "/mnt/c/Users/Adham/Dropbox/github",
+      "recentProjects": [],
+      "maxRecentProjects": 15,
+      "smartProjectSuggestions": true
+    },
+    "export": {
+      "includeCredentials": false,
+      "formatType": "json",
+      "exportPath": "/mnt/c/Users/Adham/Dropbox/github/.roo-config/export",
+      "advancedExportOptions": true
+    },
+    "experimental": {
+      "parallelProcessing": true,
+      "advancedCaching": true,
+      "predictiveLoading": true,
+      "enhancedErrorHandling": true,
+      "betaIntegrations": true
+    }
+  },
+  "extensions": {
+    "enabled": [
+      "mcp-integration",
+      "project-management",
+      "git-integration",
+      "file-explorer",
+      "experimental-features",
+      "beta-tools"
+    ],
+    "disabled": [],
+    "beta": [
+      "ai-code-review",
+      "smart-refactoring",
+      "predictive-typing"
+    ]
+  },
+  "shortcuts": {
+    "newProject": "Ctrl+Shift+N",
+    "openProject": "Ctrl+O",
+    "saveAll": "Ctrl+Shift+S",
+    "exportConfig": "Ctrl+E",
+    "debugMode": "Ctrl+Shift+D",
+    "experimentalPanel": "Ctrl+Alt+E"
+  },
+  "nightly": {
+    "autoUpdate": true,
+    "collectTelemetry": false,
+    "experimentalFeedback": true,
+    "crashReporting": true
+  }
+}
